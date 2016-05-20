@@ -24,15 +24,19 @@
  */
 package it.geosolutions.geonetwork;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import java.io.File;
 import java.util.EnumSet;
+
+import org.apache.log4j.Logger;
+import org.jdom.Element;
+import org.junit.Test;
+
 import it.geosolutions.geonetwork.util.GNInsertConfiguration;
 import it.geosolutions.geonetwork.util.GNPriv;
 import it.geosolutions.geonetwork.util.GNPrivConfiguration;
-import org.apache.log4j.Logger;
-import java.io.File;
-import org.jdom.Element;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -47,7 +51,6 @@ public class GeonetworkInsertTest extends GeonetworkTest {
     
     @Test
     public void testInsertPureMetadata() throws Exception {
-        if( ! runIntegrationTest() ) return;
         
         GNInsertConfiguration cfg = createDefaultInsertConfiguration();
 
@@ -73,7 +76,6 @@ public class GeonetworkInsertTest extends GeonetworkTest {
 
     @Test
     public void testInsertRequest() throws Exception {
-        if( ! runIntegrationTest() ) return;
                 
         File file = loadFile("request.xml");
         assertNotNull(file);
@@ -90,7 +92,6 @@ public class GeonetworkInsertTest extends GeonetworkTest {
 
     @Test
     public void testBadDelete() throws Exception {
-        if( ! runIntegrationTest() ) return;
 
         GNClient client = createClientAndCheckConnection();
         // delete
@@ -104,7 +105,6 @@ public class GeonetworkInsertTest extends GeonetworkTest {
 
     @Test
     public void testBadGet() throws Exception {
-        if( ! runIntegrationTest() ) return;
 
         GNClient client = createClientAndCheckConnection();
         // delete

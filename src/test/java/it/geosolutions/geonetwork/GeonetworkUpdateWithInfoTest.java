@@ -24,25 +24,30 @@
  */
 package it.geosolutions.geonetwork;
 
-import it.geosolutions.geonetwork.exception.GNServerException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+import static org.junit.Assume.assumeTrue;
+
+import java.io.File;
+import java.util.EnumSet;
+
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
+import org.jdom.Namespace;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-import it.geosolutions.geonetwork.op.GNMetadataUpdate;
+import org.junit.Test;
+
+import it.geosolutions.geonetwork.exception.GNServerException;
 import it.geosolutions.geonetwork.op.GNMetadataGetInfo;
 import it.geosolutions.geonetwork.op.GNMetadataGetInfo.MetadataInfo;
-import java.util.EnumSet;
+import it.geosolutions.geonetwork.op.GNMetadataUpdate;
 import it.geosolutions.geonetwork.util.GNInsertConfiguration;
 import it.geosolutions.geonetwork.util.GNPriv;
 import it.geosolutions.geonetwork.util.GNPrivConfiguration;
-import org.apache.log4j.Logger;
-import java.io.File;
-import org.jdom.Namespace;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -56,9 +61,8 @@ public class GeonetworkUpdateWithInfoTest extends GeonetworkTest {
 
     
     @Test
-    @Ignore
+    //@Ignore
     public void testUpdateMetadata() throws Exception {
-        if( ! runIntegrationTest() ) return;
         
         GNInsertConfiguration cfg = createDefaultInsertConfiguration();
 

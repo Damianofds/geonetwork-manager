@@ -24,22 +24,24 @@
  */
 package it.geosolutions.geonetwork;
 
-import it.geosolutions.geonetwork.exception.GNException;
-import it.geosolutions.geonetwork.exception.GNLibException;
-import it.geosolutions.geonetwork.exception.GNServerException;
-import it.geosolutions.geonetwork.util.GNInsertConfiguration;
-import it.geosolutions.geonetwork.util.GNSearchRequest;
-import it.geosolutions.geonetwork.util.GNSearchResponse;
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.io.IOException;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
+
+import it.geosolutions.geonetwork.exception.GNException;
+import it.geosolutions.geonetwork.exception.GNLibException;
+import it.geosolutions.geonetwork.exception.GNServerException;
+import it.geosolutions.geonetwork.util.GNInsertConfiguration;
+import it.geosolutions.geonetwork.util.GNSearchRequest;
+import it.geosolutions.geonetwork.util.GNSearchResponse;
 
 /**
  *
@@ -55,8 +57,7 @@ public class GeonetworkSearchTest extends GeonetworkTest {
     @Test
     @Ignore
     public void testSearchMetadata() throws GNException, IOException {
-        if(!runIntegrationTest())
-            return;
+        
         removeAllMetadata();
 
         GNClient client = createClientAndCheckConnection();
@@ -133,9 +134,8 @@ public class GeonetworkSearchTest extends GeonetworkTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void testEmptySearch() throws Exception {
-        if( ! runIntegrationTest() ) return;
 
         GNClient client = createClientAndCheckConnection();
         GNSearchRequest searchRequest = new GNSearchRequest();

@@ -24,37 +24,33 @@
  */
 package it.geosolutions.geonetwork;
 
-import it.geosolutions.geonetwork.exception.GNLibException;
-import it.geosolutions.geonetwork.exception.GNServerException;
-import it.geosolutions.geonetwork.util.GNSearchRequest;
-import it.geosolutions.geonetwork.util.GNSearchResponse;
-import it.geosolutions.geonetwork.util.GNInsertConfiguration;
-import org.apache.log4j.Logger;
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.logging.Level;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
+
+import it.geosolutions.geonetwork.exception.GNLibException;
+import it.geosolutions.geonetwork.exception.GNServerException;
+import it.geosolutions.geonetwork.onlinetests.GeonetworkOnlineTests;
+import it.geosolutions.geonetwork.util.GNInsertConfiguration;
+import it.geosolutions.geonetwork.util.GNSearchRequest;
+import it.geosolutions.geonetwork.util.GNSearchResponse;
 
 /**
  *
  * @author ETj (etj at geo-solutions.it)
  */
-public abstract class GeonetworkTest {
+public abstract class GeonetworkTest extends GeonetworkOnlineTests{
     private final static Logger LOGGER = Logger.getLogger(GeonetworkTest.class);
-
-    private boolean runIntegrationTest = true;
 
     @Rule
     public TestName _testName = new TestName();
-
-    protected static final String gnServiceURL = "http://localhost:8080/geonetwork";
-    protected static final String gnUsername = "admin";
-    protected static final String gnPassword = "admin";
     
     public GeonetworkTest() {
     }
@@ -64,17 +60,8 @@ public abstract class GeonetworkTest {
 //        super.setUp();
         LOGGER.info("====================> " + _testName.getMethodName());
     }
-    
-    protected boolean runIntegrationTest() {
-        if(! runIntegrationTest)
-            LOGGER.info("Skipping test " +  _testName.getMethodName());
-        assumeTrue(runIntegrationTest);
-        return runIntegrationTest;
-    }
-    
 
     protected GNClient createClientAndCheckConnection() {
-        
         GNClient client = new GNClient(gnServiceURL, gnUsername, gnPassword);
         boolean logged = client.ping();
         assertTrue("Error pinging GN", logged);
