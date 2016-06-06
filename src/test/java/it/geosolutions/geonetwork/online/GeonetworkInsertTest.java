@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package it.geosolutions.geonetwork;
+package it.geosolutions.geonetwork.online;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -34,6 +34,7 @@ import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.junit.Test;
 
+import it.geosolutions.geonetwork.GNClient;
 import it.geosolutions.geonetwork.util.GNInsertConfiguration;
 import it.geosolutions.geonetwork.util.GNPriv;
 import it.geosolutions.geonetwork.util.GNPrivConfiguration;

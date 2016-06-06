@@ -25,6 +25,7 @@
 package it.geosolutions.geonetwork.io;
 
 import it.geosolutions.geonetwork.GNClient;
+import it.geosolutions.geonetwork.GN2Client;
 import it.geosolutions.geonetwork.exception.GNLibException;
 import it.geosolutions.geonetwork.exception.GNServerException;
 import it.geosolutions.geonetwork.util.GNInsertConfiguration;
@@ -63,7 +64,7 @@ public class GNMetadataPublisher {
                 + gnUsername + "]");
 
         // Create a GeoNetwork client pointing to the GeoNetwork service
-        GNClient client = new GNClient(gnServiceURL);
+        GNClient client = new GN2Client(gnServiceURL);
 
         // Perform a login into GN
         boolean logged = client.login(gnUsername, gnPassword);

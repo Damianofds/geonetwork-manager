@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package it.geosolutions.geonetwork;
+package it.geosolutions.geonetwork.online;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,8 +34,10 @@ import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import it.geosolutions.geonetwork.GNClient;
 import it.geosolutions.geonetwork.exception.GNException;
 import it.geosolutions.geonetwork.exception.GNLibException;
 import it.geosolutions.geonetwork.exception.GNServerException;
@@ -55,7 +57,6 @@ public class GeonetworkSearchTest extends GeonetworkTest {
     }
 
     @Test
-    @Ignore
     public void testSearchMetadata() throws GNException, IOException {
         
         removeAllMetadata();

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package it.geosolutions.geonetwork;
+package it.geosolutions.geonetwork.online;
 
 import static org.junit.Assert.*;
 
@@ -35,9 +35,10 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 
+import it.geosolutions.geonetwork.GN2Client;
+import it.geosolutions.geonetwork.GNClient;
 import it.geosolutions.geonetwork.exception.GNLibException;
 import it.geosolutions.geonetwork.exception.GNServerException;
-import it.geosolutions.geonetwork.onlinetests.GeonetworkOnlineTests;
 import it.geosolutions.geonetwork.util.GNInsertConfiguration;
 import it.geosolutions.geonetwork.util.GNSearchRequest;
 import it.geosolutions.geonetwork.util.GNSearchResponse;
@@ -57,13 +58,23 @@ public abstract class GeonetworkTest extends GeonetworkOnlineTests{
 
     @Before 
     public void setUp() throws Exception {
-//        super.setUp();
         LOGGER.info("====================> " + _testName.getMethodName());
     }
 
     protected GNClient createClientAndCheckConnection() {
-        GNClient client = new GNClient(gnServiceURL, gnUsername, gnPassword);
-        boolean logged = client.ping();
+        GNClient client = null;
+        switch (gnVersion) {
+        case 2:
+            client = new GN2Client(gnServiceURL, gnUsername, gnPassword);
+            break;
+        case 3:
+            client = new GN2Client(gnServiceURL, gnUsername, gnPassword);
+            break;
+        default:
+            client = null;
+            break;
+        }
+        boolean logged = (client == null)? false : client.ping();
         assertTrue("Error pinging GN", logged);
         return client;
     }
