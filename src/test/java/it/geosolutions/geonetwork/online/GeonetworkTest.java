@@ -24,7 +24,8 @@
  */
 package it.geosolutions.geonetwork.online;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -36,6 +37,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 
 import it.geosolutions.geonetwork.GN2Client;
+import it.geosolutions.geonetwork.GN3Client;
 import it.geosolutions.geonetwork.GNClient;
 import it.geosolutions.geonetwork.exception.GNLibException;
 import it.geosolutions.geonetwork.exception.GNServerException;
@@ -68,7 +70,7 @@ public abstract class GeonetworkTest extends GeonetworkOnlineTests{
             client = new GN2Client(gnServiceURL, gnUsername, gnPassword);
             break;
         case 3:
-            client = new GN2Client(gnServiceURL, gnUsername, gnPassword);
+            client = new GN3Client(gnServiceURL, gnUsername, gnPassword);
             break;
         default:
             client = null;

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package it.geosolutions.geonetwork.op;
+package it.geosolutions.geonetwork.op.gn3;
 
 import it.geosolutions.geonetwork.exception.GNLibException;
 import it.geosolutions.geonetwork.exception.GNServerException;
@@ -43,9 +43,9 @@ import org.jdom.output.XMLOutputter;
  * 
  * @author ETj (etj at geo-solutions.it)
  */
-public class GNMetadataAdmin {
+public class GN3MetadataAdmin {
         
-    private final static Logger LOGGER = Logger.getLogger(GNMetadataAdmin.class);
+    private final static Logger LOGGER = Logger.getLogger(GN3MetadataAdmin.class);
 
     public static void setPriv(HTTPUtils connection, String gnServiceURL, long metadataId, GNPrivConfiguration cfg) throws GNLibException, GNServerException {
         if(LOGGER.isDebugEnabled())
@@ -86,7 +86,7 @@ public class GNMetadataAdmin {
     
     private static void gnAdminMetadata(HTTPUtils connection, String baseURL, final Element gnRequest) throws GNServerException {
 
-        String serviceURL = baseURL + "/srv/eng/metadata.admin";
+        String serviceURL = baseURL + "/srv/eng/md.privileges";
         gnPut(connection, serviceURL, gnRequest);
         if(connection.getLastHttpStatus() != HttpStatus.SC_OK)
             throw new GNServerException("Error setting metadata privileges in GeoNetwork");

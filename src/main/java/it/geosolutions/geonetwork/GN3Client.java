@@ -33,20 +33,19 @@ import org.jdom.Element;
 import it.geosolutions.geonetwork.exception.GNLibException;
 import it.geosolutions.geonetwork.exception.GNServerException;
 import it.geosolutions.geonetwork.op.GNInfo;
-import it.geosolutions.geonetwork.op.GNMetadataAdmin;
 import it.geosolutions.geonetwork.op.GNMetadataDelete;
 import it.geosolutions.geonetwork.op.GNMetadataGet;
 import it.geosolutions.geonetwork.op.GNMetadataGetInfo;
+import it.geosolutions.geonetwork.op.GNMetadataGetInfo.MetadataInfo;
 import it.geosolutions.geonetwork.op.GNMetadataGetVersion;
 import it.geosolutions.geonetwork.op.GNMetadataInsert;
 import it.geosolutions.geonetwork.op.GNMetadataSearch;
 import it.geosolutions.geonetwork.op.GNMetadataUpdate;
-import it.geosolutions.geonetwork.op.GNMetadataGetInfo.MetadataInfo;
+import it.geosolutions.geonetwork.op.gn3.GN3MetadataAdmin;
 import it.geosolutions.geonetwork.util.GNInsertConfiguration;
 import it.geosolutions.geonetwork.util.GNPrivConfiguration;
 import it.geosolutions.geonetwork.util.GNSearchRequest;
 import it.geosolutions.geonetwork.util.GNSearchResponse;
-import it.geosolutions.geonetwork.util.HTTPUtils;
 
 /**
  * 
@@ -89,7 +88,7 @@ public class GN3Client extends GNAbstractClient {
 
     @Override
     public void setPrivileges(long metadataId, GNPrivConfiguration cfg) throws GNLibException, GNServerException {
-        GNMetadataAdmin.setPriv(connection, gnServiceURL, metadataId, cfg);
+        GN3MetadataAdmin.setPriv(connection, gnServiceURL, metadataId, cfg);
         
     }
 
