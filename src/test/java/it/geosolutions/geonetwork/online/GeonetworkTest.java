@@ -32,6 +32,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.apache.log4j.Logger;
+import org.jdom.Element;
+import org.jdom.Namespace;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
@@ -61,6 +63,7 @@ public abstract class GeonetworkTest extends GeonetworkOnlineTests{
     @Before 
     public void setUp() throws Exception {
         LOGGER.info("====================> " + _testName.getMethodName());
+        removeAllMetadata();
     }
 
     protected GNClient createClientAndCheckConnection() {
@@ -138,8 +141,7 @@ public abstract class GeonetworkTest extends GeonetworkOnlineTests{
         }
         fail("Expected value " + expected + " not confirmed after " + MAXLOOP + " tries. Found " + searchResponse.getCount());
     }
-
-
+    
     protected GNInsertConfiguration createDefaultInsertConfiguration() {
         GNInsertConfiguration cfg = new GNInsertConfiguration();
         
@@ -163,5 +165,26 @@ public abstract class GeonetworkTest extends GeonetworkOnlineTests{
         }    
     }
 
-    
+    protected Element getTitleElement(Element metadata) {
+        //    xmlns:gmd="http://www.isotc211.org/2005/gmd"
+        //    xmlns:gco="http://www.isotc211.org/2005/gco"        
+        //            
+        //    <gmd:identificationInfo>
+        //      <gmd:MD_DataIdentification>
+        //         <gmd:citation>
+        //            <gmd:CI_Citation>
+        //               <gmd:title>
+        //                  <gco:CharacterString>TEST GeoBatch Action: GeoNetwork</gco:CharacterString>
+        final Namespace NS_GMD = Namespace.getNamespace("gmd","http://www.isotc211.org/2005/gmd");
+        final Namespace NS_GCO = Namespace.getNamespace("gco","http://www.isotc211.org/2005/gco");
+
+        Element idInfo = metadata.getChild("identificationInfo", NS_GMD);        
+        Element dataId = idInfo.getChild("MD_DataIdentification", NS_GMD);
+        Element cit    = dataId.getChild("citation", NS_GMD);
+        Element cicit  = cit.getChild("CI_Citation", NS_GMD);
+        Element title  = cicit.getChild("title", NS_GMD);
+        Element chstr  = title.getChild("CharacterString", NS_GCO);
+        
+        return chstr;
+    }
 }

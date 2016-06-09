@@ -36,7 +36,6 @@ import java.util.EnumSet;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.jdom.Element;
-import org.jdom.Namespace;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.junit.Test;
@@ -156,30 +155,6 @@ public class GeonetworkUpdateWithInfoTest extends GeonetworkTest {
                 
 //        client.deleteMetadata(id);
     }
-
-    private Element getTitleElement(Element metadata) {
-        //    xmlns:gmd="http://www.isotc211.org/2005/gmd"
-        //    xmlns:gco="http://www.isotc211.org/2005/gco"        
-        //            
-        //    <gmd:identificationInfo>
-        //      <gmd:MD_DataIdentification>
-        //         <gmd:citation>
-        //            <gmd:CI_Citation>
-        //               <gmd:title>
-        //                  <gco:CharacterString>TEST GeoBatch Action: GeoNetwork</gco:CharacterString>
-        final Namespace NS_GMD = Namespace.getNamespace("gmd","http://www.isotc211.org/2005/gmd");
-        final Namespace NS_GCO = Namespace.getNamespace("gco","http://www.isotc211.org/2005/gco");
-
-        Element idInfo = metadata.getChild("identificationInfo", NS_GMD);        
-        Element dataId = idInfo.getChild("MD_DataIdentification", NS_GMD);
-        Element cit    = dataId.getChild("citation", NS_GMD);
-        Element cicit  = cit.getChild("CI_Citation", NS_GMD);
-        Element title  = cicit.getChild("title", NS_GMD);
-        Element chstr  = title.getChild("CharacterString", NS_GCO);
-        
-        return chstr;
-    }
-    
 }
 
 

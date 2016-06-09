@@ -38,6 +38,8 @@ import it.geosolutions.geonetwork.GNClient;
 import it.geosolutions.geonetwork.util.GNInsertConfiguration;
 import it.geosolutions.geonetwork.util.GNPriv;
 import it.geosolutions.geonetwork.util.GNPrivConfiguration;
+import it.geosolutions.geonetwork.util.GNSearchRequest;
+import it.geosolutions.geonetwork.util.GNSearchResponse;
 
 /**
  *
@@ -73,6 +75,10 @@ public class GeonetworkInsertTest extends GeonetworkTest {
         Element md = client.get(id);
 
         client.deleteMetadata(id);
+        
+        GNSearchRequest searchRequest = new GNSearchRequest();
+        searchRequest.addParam(GNSearchRequest.Param.title, getTitleElement(md).getText());
+        asyncSearchAssertEquals(0, client, searchRequest);
     }
 
     @Test
@@ -89,6 +95,10 @@ public class GeonetworkInsertTest extends GeonetworkTest {
         Element md = client.get(id);
         // delete
         client.deleteMetadata(id);
+        
+        GNSearchRequest searchRequest = new GNSearchRequest();
+        searchRequest.addParam(GNSearchRequest.Param.title, getTitleElement(md).getText());
+        asyncSearchAssertEquals(0, client, searchRequest);
     }
 
     @Test
